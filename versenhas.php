@@ -70,9 +70,12 @@
 
  }
  
- function Enviar(idsenha){
+ function Alterar(idsenha){
      var senha = document.getElementById("textosenha" + idsenha).value;
      window.location.replace("alterasenha.php?cd_id_senha="+idsenha+"&senha='"+senha+"'");
+ }
+ function Excluir(idsenha){
+     window.location.replace("deletasenha.php?cd_id_senha="+idsenha);
  }
 </script>
 
@@ -101,7 +104,8 @@
                                     echo    "<input type='hidden' id='cd_id_senha' value=".$row["cd_id_senha"].">";
                                     echo    "<td><input type='password' id='textosenha".$row["cd_id_senha"]."' value=".$row["cd_senha"].">";
                                     echo "<input type='checkbox' id='ver' value='0' onchange='verSenha(this,".$row["cd_id_senha"].");'>&nbsp; <span id='verTexto'>Mostrar</span></td>";
-                                    echo "<td><button onclick='Enviar(".$row["cd_id_senha"].")' class='btn btn-primary' value='Enviar' id='botaoEnv'>Alterar</button></td>";
+                                    echo "<td><button onclick='Alterar(".$row["cd_id_senha"].")' class='btn btn-primary' value='Alterar' id='botaoAlt'>Alterar</button></td>";
+                                    echo "<td><button onclick='Excluir(".$row["cd_id_senha"].")' class='btn btn-primary' value='Excluir' id='botaoEx'>Excluir</button></td>";
                                     echo "</tr>";
                                 }
                             
