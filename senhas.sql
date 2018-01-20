@@ -26,8 +26,11 @@ CREATE TABLE `Senhas` (
   `cd_id_senha` int(11) NOT NULL AUTO_INCREMENT,
   `nm_associacao_senha` varchar(20) DEFAULT NULL,
   `cd_senha` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`cd_id_senha`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `fk_usuario` int(11) NOT NULL,
+  PRIMARY KEY (`cd_id_senha`),
+  KEY `c_usuario` (`fk_usuario`),
+  CONSTRAINT `c_usuario` FOREIGN KEY (`fk_usuario`) REFERENCES `Usuario` (`cd_id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +40,31 @@ CREATE TABLE `Senhas` (
 LOCK TABLES `Senhas` WRITE;
 /*!40000 ALTER TABLE `Senhas` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Senhas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Usuario`
+--
+
+DROP TABLE IF EXISTS `Usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Usuario` (
+  `cd_id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `nm_usuario` varchar(50) DEFAULT NULL,
+  `nm_email` varchar(30) DEFAULT NULL,
+  `nm_senha` varchar(100) NOT NULL,
+  PRIMARY KEY (`cd_id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Usuario`
+--
+
+LOCK TABLES `Usuario` WRITE;
+/*!40000 ALTER TABLE `Usuario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +76,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-08 13:02:16
+-- Dump completed on 2018-01-20  7:17:22
